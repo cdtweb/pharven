@@ -1,0 +1,12 @@
+{
+    "config": {
+        "phar_name": "pharven.phar",
+        "phar_alias": "pharven.phar"
+    },
+    "include_dirs": [
+        "vendor"
+    ],
+    "mount_dirs": [
+        "src"
+    ]
+}

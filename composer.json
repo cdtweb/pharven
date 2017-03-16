@@ -1,0 +1,28 @@
+{
+    "name": "cdtweb/pharven",
+    "description": "Pharven turns your vendor directory into a PHAR.",
+    "version": "0.0.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clint Tyler",
+            "email": "ctyler@cdtwebsolutions.com"
+        }
+    ],
+    "keywords": [
+        "composer",
+        "phar"
+    ],
+    "require": {
+        "twig/twig": "^2.2",
+        "nonamephp/php7-common": "0.3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pharven\\": "src"
+        }
+    },
+    "bin": [
+        "bin/pharven"
+    ]
+}

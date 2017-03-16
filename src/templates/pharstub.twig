@@ -1,0 +1,9 @@
+<?php
+\Phar::mapPhar();
+{% if mounts %}
+{% for mount in mounts %}
+\Phar::mount('{{ mount }}', '{{ mount }}');
+{% endfor %}
+{% endif %}
+include "phar://pharven.phar/autoload.php";
+__HALT_COMPILER();
