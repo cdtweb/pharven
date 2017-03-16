@@ -77,7 +77,12 @@ class Pharven
 			throw new \Exception('You must define directories to include in phar');
 		}
 
-		// @todo Validate the directories exist
+		// Validate include directories
+		foreach($includeDirs as $includeDir){
+			if(!is_dir($includeDir)){
+				throw new \Exception("$includeDir is not a directory");
+			}
+		}
 		$this->includeDirs = $includeDirs;
 	}
 
@@ -87,7 +92,12 @@ class Pharven
 	 */
 	public function setMountDirs(array $mountDirs)
 	{
-		// @todo Validate that directories exist
+		// Validate mount directories
+		foreach($mountDirs as $mountDir){
+			if(!is_dir($mountDir)){
+				throw new \Exception("$mountDir is not a directory!");
+			}
+		}
 		$this->mountDirs = $mountDirs;
 	}
 
