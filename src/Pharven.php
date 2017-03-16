@@ -18,13 +18,6 @@ class Pharven
 	protected $pharName = 'pharven.phar';
 
 	/**
-	 * Alias for phar:// stream
-	 *
-	 * @var string
-	 */
-	protected $pharAlias = 'pharven.phar';
-
-	/**
 	 * Directories to be included in the .phar
 	 *
 	 * @var array
@@ -44,10 +37,7 @@ class Pharven
 	public function __construct(array $settings = [])
 	{
 		// Set name and alias
-		$this->setPharName(
-			$settings['config']['phar_name'] ?? $this->pharName,
-			$settings['config']['phar_alias'] ?? $this->pharAlias
-		);
+		$this->setPharName($settings['config']['name'] ?? $this->pharName);
 
 		// Set include directories
 		$this->setIncludeDirs($settings['include_dirs'] ?? []);
@@ -69,12 +59,10 @@ class Pharven
 	 * Set PHAR name and alias.
 	 *
 	 * @param string $pharName
-	 * @param null $pharAlias
 	 */
-	public function setPharName(string $pharName, $pharAlias = null)
+	public function setPharName(string $pharName)
 	{
 		$this->pharName = $pharName;
-		$this->pharAlias = $pharAlias ?? $pharName;
 	}
 
 	/**
@@ -106,7 +94,7 @@ class Pharven
 	public function makePhar()
 	{
 		// @todo create phar in /tmp then move to output dir
-		$phar = new \Phar($this->pharName, \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::KEY_AS_FILENAME, $this->pharAlias);
+		$phar = new \Phar($this->pharName, \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::KEY_AS_FILENAME, $this->pharName);
 
 		foreach($this->includeDirs as $includeDir){
 			$phar->buildFromDirectory($includeDir);

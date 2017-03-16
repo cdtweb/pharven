@@ -1,7 +1,6 @@
 {
     "config": {
-        "phar_name": "pharven.phar",
-        "phar_alias": "pharven.phar"
+        "name": "pharven.phar"
     },
     "include_dirs": [
         "vendor"
