@@ -89,6 +89,7 @@ class Pharven
 	/**
 	 * Set mount directories
 	 * @param array $mountDirs
+	 * @throws \Exception
 	 */
 	public function setMountDirs(array $mountDirs)
 	{
