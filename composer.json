@@ -1,7 +1,7 @@
 {
     "name": "cdtweb/pharven",
-    "description": "Pharven turns your vendor directory into a PHAR.",
-    "version": "0.0.1",
+    "description": "Pharven bundles your vendor directory into a PHP Archive (PHAR)",
+    "version": "0.1.0",
     "license": "MIT",
     "authors": [
         {
@@ -13,13 +13,23 @@
         "composer",
         "phar"
     ],
+    "homepage": "https://github.com/cdtweb/pharven",
     "require": {
-        "twig/twig": "^2.2",
-        "nonamephp/php7-common": "0.3.*"
+        "php": ">=7.1",
+        "twig/twig": "^2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "squizlabs/php_codesniffer": "2.*"
     },
     "autoload": {
         "psr-4": {
             "Pharven\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pharven\\": "tests"
         }
     },
     "bin": [
