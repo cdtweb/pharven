@@ -1,12 +1,9 @@
 Pharven
 =======
 
-Do you commit your vendor directory?
+If you have ever needed to commit your Composer dependencies then Pharven is built for you.
 
-If you do, then you know that adding and updating packages can lead to tons of 
-file changes that need to be commited and deployed..
-
-Pharven bundles your vendor directory into a PHP Archive (PHAR) and allows you to
+Pharven bundles your vendor directory into a single PHP Archive (PHAR) and allows you to
 commit and deploy a single file for your entire vendor directory.
  
  
@@ -19,12 +16,11 @@ Add Pharven to your project using Composer:
 
 ## Usage
 
-Add `pharven.json` to your project with the following content:
+Add `pharven.json` to your project root with the following content:
 
     {
         "config": {
-            "phar_name": "pharven.phar",
-            "phar_alias": "pharven.phar"
+            "name": "pharven.phar"
         },
         "include_dirs": [
             "vendor"
@@ -38,5 +34,7 @@ Run Pharven to create a PHAR file:
 
     php vendor/bin/pharven
     
-A new file named `pharven.phar` will be added to the working directory. Update your bootstrap to include the phar file instead of vendor/autoload.php and be on your way!
+A new file named `pharven.phar` will be added to the working directory. Update your bootstrap to include the phar file instead of vendor/autoload.php and you're good to go.
 
+    <?php
+    require __DIR__ . '/pharven.phar';

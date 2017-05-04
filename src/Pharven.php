@@ -31,7 +31,16 @@ class Pharven
 	 */
 	protected $mountDirs = [];
 
+	/**
+	 * Output directory for .phar
+	 *
+	 * @var string
+	 */
 	protected $outputDir;
+
+	/**
+	 * @var \Twig_Environment
+	 */
 	protected $twig;
 
 	public function __construct(array $settings = [])
@@ -45,9 +54,7 @@ class Pharven
 		// Set mount directories
 		$this->setMountDirs($settings['mount_dirs'] ?? []);
 
-		global $argv;
-		array_shift($argv);
-
+		// Set the output directory
 		$this->outputDir = isset($argv[0]) ? $argv[0] == '.' ? $_SERVER['PWD'] : $argv[0] : $_SERVER['PWD'];
 
 		// Load Twig
