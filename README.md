@@ -1,6 +1,9 @@
 Pharven
 =======
 
+[![Build
+Status](https://travis-ci.org/cdtweb/pharven.svg?branch=master)](https://travis-ci.org/cdtweb/pharven)
+
 If you have ever needed to commit your `vendor/` directory into your project repository then Pharven was built for you.
 
 Pharven bundles your vendor directory into a single PHP Archive (PHAR) and allows you to
