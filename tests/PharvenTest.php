@@ -5,7 +5,7 @@ class PharvenTest extends \PHPUnit_Framework_TestCase
 {
     public function testPharven()
     {
-    	// @todo
+        // @todo
         $this->assertTrue(true);
     }
 }

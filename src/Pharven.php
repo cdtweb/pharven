@@ -11,18 +11,18 @@ use Twig_Loader_Filesystem;
 class Pharven
 {
     /**
-     * Settings defined by user through pharven.json
-     *
-     * @var array
-     */
-    protected $settings = [];
-
-    /**
      * Output name for .phar
      *
      * @var string
      */
     protected $pharName = 'pharven.phar';
+
+    /**
+     * Vendor directory
+     *
+     * @var string
+     */
+    protected $vendorDir;
 
     /**
      * Directories to be included in the .phar
@@ -46,19 +46,37 @@ class Pharven
     /**
      * Pharven constructor.
      *
-     * @param array $settings
+     * @param string $vendorDir
+     * @param array $userSettings
      */
-    public function __construct(array $settings = [])
+    public function __construct(string $vendorDir, array $userSettings = [])
     {
+        // Set vendor directory
+        $this->setVendorDir($vendorDir);
+
         // Set include directories
-        $this->setIncludeDirs($settings['include_dirs'] ?? []);
+        $this->setIncludeDirs($userSettings['include_dirs'] ?? []);
 
         // Set mount directories
-        $this->setMountDirs($settings['mount_dirs'] ?? []);
+        $this->setMountDirs($userSettings['mount_dirs'] ?? []);
 
         // Load Twig
         $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
         $this->twig = new Twig_Environment($loader);
+    }
+
+    /**
+     * Set path to vendor directory.
+     *
+     * @param string $vendorDir
+     * @throws \Exception
+     */
+    public function setVendorDir($vendorDir)
+    {
+        if (!is_dir($vendorDir)) {
+            throw new \Exception("$vendorDir is not a directory!");
+        }
+        $this->vendorDir = $vendorDir;
     }
 
     /**
@@ -69,10 +87,6 @@ class Pharven
      */
     public function setIncludeDirs(array $includeDirs)
     {
-        if (empty($includeDirs)) {
-            throw new \Exception('Include directories must be configured in pharven.json');
-        }
-
         // Validate include directories
         foreach ($includeDirs as $includeDir) {
             if (!is_dir($includeDir)) {
@@ -121,8 +135,13 @@ class Pharven
      */
     public function makePhar(): bool
     {
+        // Create phar
         $phar = new \Phar($this->pharName, \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::KEY_AS_FILENAME, $this->pharName);
 
+        // Include vendor directory
+        $phar->buildFromDirectory($this->vendorDir);
+
+        // Include user defined directories
         foreach ($this->includeDirs as $includeDir) {
             $phar->buildFromDirectory($includeDir);
         }
