@@ -39,13 +39,6 @@ class Pharven
     protected $mountDirs = [];
 
     /**
-     * Output directory for .phar
-     *
-     * @var string
-     */
-    protected $outputDir;
-
-    /**
      * @var Twig_Environment
      */
     protected $twig;
