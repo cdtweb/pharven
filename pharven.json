@@ -1,7 +1,4 @@
 {
-    "include_dirs": [
-        "vendor"
-    ],
     "mount_dirs": [
         "src"
     ]

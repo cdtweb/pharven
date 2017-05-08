@@ -22,9 +22,6 @@ Add Pharven to your project using Composer:
 Add `pharven.json` to your project root with the following content:
 
     {
-        "include_dirs": [
-            "vendor"
-        ],
         "mount_dirs": [
             "src"
         ]

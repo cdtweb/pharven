@@ -36,5 +36,5 @@ foreach($pharvenJsonPaths as $path){
 }
 
 require_once $vendorDir . '/autoload.php';
-$pharven = new \Pharven\Pharven(json_decode(file_get_contents($pharvenJsonPath), true));
+$pharven = new \Pharven\Pharven($vendorDir, json_decode(file_get_contents($pharvenJsonPath), true));
 $pharven->makePhar();
