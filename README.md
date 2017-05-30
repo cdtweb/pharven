@@ -27,7 +27,9 @@ Add `pharven.json` to your project root with the following content:
         ]
     }
     
-Run Pharven to create a PHAR file:
+**mount_dirs** are important if you are using Composer to autoload your project classes. `.phar` files act as their own file system, so if your classes aren't mounted, they won't be visible to the Composer autoloader.
+    
+Run Pharven to create/update your PHAR file:
 
     php vendor/bin/pharven
     
