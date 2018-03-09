@@ -1,20 +1,21 @@
 {
-    "name": "cdtweb/pharven",
+    "name": "axute/pharven",
     "description": "Pharven bundles your vendor directory into a PHP Archive (PHAR)",
-    "version": "0.1.1",
+    "version": "0.1.6",
     "license": "MIT",
     "authors": [
         {
-            "name": "Clint Tyler",
-            "email": "ctyler@cdtwebsolutions.com"
+            "name": "axute",
+            "email": "axutes@gmail.com"
         }
     ],
     "keywords": [
         "composer",
         "phar"
     ],
-    "homepage": "https://github.com/cdtweb/pharven",
+    "homepage": "https://github.com/axute/pharven",
     "require": {
+        "roave/security-advisories": "dev-master",
         "php": ">=7.1",
         "twig/twig": "^2.2"
     },

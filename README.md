@@ -14,7 +14,7 @@ commit and deploy a single file instead of your entire `vendor/` directory.
 
 Add Pharven to your project using Composer:
 
-    composer require cdtweb/pharven
+    composer require axute/pharven
     
 
 ## Usage
@@ -26,8 +26,17 @@ Add `pharven.json` to your project root with the following content:
             "src"
         ]
     }
-    
+In this case, the directory will tried mounted every time you include the phar.
 **mount_dirs** are important if you are using Composer to autoload your project classes. `.phar` files act as their own file system, so if your classes aren't mounted, they won't be visible to the Composer autoloader.
+**But for PhpStorm its not possible to debug in mounted directories.**
+
+
+    
+For Debugging or not mounted dirs this is also possible, but you need absolute paths
+
+    $autoload = require_once __DIR__ . DIRECTORY_SEPARATOR . 'pharven.phar';
+    $autoload->addPsr4('',__DIR__.DIRECTORY_SEPARATOR.'src');
+    
     
 Run Pharven to create/update your PHAR file:
 
@@ -37,3 +46,8 @@ A new file named `pharven.phar` will be added to the working directory. Update y
 
     <?php
     require __DIR__ . '/pharven.phar';
+    
+## Debugging
+
+mounted dirs can not be debugged (with PhpStorm)
+
