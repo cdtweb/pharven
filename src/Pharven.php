@@ -48,6 +48,7 @@ class Pharven
      *
      * @param string $vendorDir
      * @param array $userSettings
+     * @throws \Exception
      */
     public function __construct(string $vendorDir, array $userSettings = [])
     {
@@ -71,10 +72,9 @@ class Pharven
      * @param string $vendorDir
      * @throws \Exception
      */
-    public function setVendorDir($vendorDir)
-    {
+    public function setVendorDir($vendorDir): void {
         if (!is_dir($vendorDir)) {
-            throw new \Exception("$vendorDir is not a directory!");
+            throw new \RuntimeException("$vendorDir is not a directory!");
         }
         $this->vendorDir = $vendorDir;
     }
@@ -85,12 +85,11 @@ class Pharven
      * @param array $includeDirs
      * @throws \Exception
      */
-    public function setIncludeDirs(array $includeDirs)
-    {
+    public function setIncludeDirs(array $includeDirs): void {
         // Validate include directories
         foreach ($includeDirs as $includeDir) {
             if (!is_dir($includeDir)) {
-                throw new \Exception("$includeDir is not a directory!");
+                throw new \RuntimeException("$includeDir is not a directory!");
             }
         }
         $this->includeDirs = $includeDirs;
@@ -101,12 +100,11 @@ class Pharven
      * @param array $mountDirs
      * @throws \Exception
      */
-    public function setMountDirs(array $mountDirs)
-    {
+    public function setMountDirs(array $mountDirs): void {
         // Validate mount directories
         foreach ($mountDirs as $mountDir) {
             if (!is_dir($mountDir)) {
-                throw new \Exception("$mountDir is not a directory!");
+                throw new \RuntimeException("$mountDir is not a directory!");
             }
         }
         $this->mountDirs = $mountDirs;
@@ -132,12 +130,24 @@ class Pharven
      * Create the PHAR
      *
      * @return boolean
+     * @throws \UnexpectedValueException
+     * @throws \BadMethodCallException
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function makePhar(): bool
     {
         // Create phar
-        $phar = new \Phar($this->pharName, \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::KEY_AS_FILENAME, $this->pharName);
-
+        $pharFilePath = getcwd() . DIRECTORY_SEPARATOR . $this->pharName;
+        if(is_file($pharFilePath)) {
+            unlink($pharFilePath);
+        }
+        $phar = new \Phar($pharFilePath, \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::KEY_AS_FILENAME, $this->pharName);
+        $phar->setMetadata([
+            'datetime'=>date('c'),
+        ]);
+        $phar->setSignatureAlgorithm(\Phar::SHA1);
         // Include vendor directory
         $phar->buildFromDirectory($this->vendorDir);
 

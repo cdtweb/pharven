@@ -2,41 +2,20 @@
 <?php
 
 // Find vendor dir
-$vendorDir = false;
-$vendorDirs = [
-	__DIR__ . '/vendor',
-	__DIR__ . '/../vendor',
-	__DIR__ . '/../../vendor',
-	__DIR__ . '/../../../vendor',
-	__DIR__ . '/../../../../vendor'
-];
-foreach($vendorDirs as $dir){
-	if(is_dir($dir)){
-		$vendorDir = realpath($dir);
-		break;
-	}
-}
+$cwd = getcwd() . DIRECTORY_SEPARATOR;
+$vendorDir = $cwd . 'vendor';
 
-if(!$vendorDir){
-    die('Could not find vendor directory.');
+if(is_dir($vendorDir) === false){
+    die('Could not find vendor directory: '.$vendorDir);
 }
 
 // Find pharven.json
-$pharvenJsonPath = false;
-$pharvenJsonPaths = [
-	__DIR__ . '/pharven.json',
-	__DIR__ . '/../pharven.json',
-	__DIR__ . '/../../pharven.json',
-	__DIR__ . '/../../../pharven.json',
-	__DIR__ . '/../../../../pharven.json'
-];
-foreach($pharvenJsonPaths as $path){
-	if(file_exists($path)){
-		$pharvenJsonPath = realpath($path);
-		break;
-	}
-}
+$pharvenJsonFile = $cwd . 'pharven.$pharvenJsonFile';
+$pharvenJson = is_file($pharvenJsonFile) ? json_decode(file_get_contents($pharvenJsonFile), true) : [];
 
-require_once $vendorDir . '/autoload.php';
-$pharven = new \Pharven\Pharven($vendorDir, json_decode(file_get_contents($pharvenJsonPath), true));
+/** @noinspection PhpIncludeInspection */
+require_once getcwd() . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+/** @noinspection PhpUnhandledExceptionInspection */
+$pharven = new \Pharven\Pharven($vendorDir, $pharvenJson);
+/** @noinspection PhpUnhandledExceptionInspection */
 $pharven->makePhar();
