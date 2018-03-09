@@ -13,7 +13,7 @@
         "composer",
         "phar"
     ],
-    "homepage": "https://github.com/cdtweb/pharven",
+    "homepage": "https://github.com/axute/pharven",
     "require": {
         "roave/security-advisories": "dev-master",
         "php": ">=7.1",

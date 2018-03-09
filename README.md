@@ -14,7 +14,7 @@ commit and deploy a single file instead of your entire `vendor/` directory.
 
 Add Pharven to your project using Composer:
 
-    composer require cdtweb/pharven
+    composer require axute/pharven
     
 
 ## Usage
