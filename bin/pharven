@@ -10,7 +10,7 @@ if(is_dir($vendorDir) === false){
 }
 
 // Find pharven.json
-$pharvenJsonFile = $cwd . 'pharven.$pharvenJsonFile';
+$pharvenJsonFile = $cwd . 'pharven.json';
 $pharvenJson = is_file($pharvenJsonFile) ? json_decode(file_get_contents($pharvenJsonFile), true) : [];
 
 /** @noinspection PhpIncludeInspection */
