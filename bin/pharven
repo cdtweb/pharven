@@ -7,7 +7,8 @@ $vendorDirs = [
 	__DIR__ . '/vendor',
 	__DIR__ . '/../vendor',
 	__DIR__ . '/../../vendor',
-	__DIR__ . '/../../../vendor'
+	__DIR__ . '/../../../vendor',
+	__DIR__ . '/../../../../vendor'
 ];
 foreach($vendorDirs as $dir){
 	if(is_dir($dir)){
@@ -26,7 +27,8 @@ $pharvenJsonPaths = [
 	__DIR__ . '/pharven.json',
 	__DIR__ . '/../pharven.json',
 	__DIR__ . '/../../pharven.json',
-	__DIR__ . '/../../../pharven.json'
+	__DIR__ . '/../../../pharven.json',
+	__DIR__ . '/../../../../pharven.json'
 ];
 foreach($pharvenJsonPaths as $path){
 	if(file_exists($path)){

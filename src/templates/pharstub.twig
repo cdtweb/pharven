@@ -2,7 +2,7 @@
 \Phar::mapPhar();
 {% if mounts %}
 {% for mount in mounts %}
-\Phar::mount('{{ mount }}', '{{ mount }}');
+\Phar::mount('{{ mount }}', __DIR__ . DIRECTORY_SEPARATOR . '{{ mount }}');
 {% endfor %}
 {% endif %}
 include "phar://pharven.phar/autoload.php";
