@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Phaven coding standard">
-    <description>Pharven coding standard</description>
+<ruleset name="PSR-2 coding standard">
+    <description>PSR-2 coding standard</description>
 
     <!-- command arguments -->
     <arg value="p"/>

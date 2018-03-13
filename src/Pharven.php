@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 namespace Pharven;
 
 use Twig_Environment;
@@ -48,6 +49,7 @@ class Pharven
      *
      * @param string $vendorDir
      * @param array $userSettings
+     * @throws \Exception
      */
     public function __construct(string $vendorDir, array $userSettings = [])
     {
@@ -132,6 +134,9 @@ class Pharven
      * Create the PHAR
      *
      * @return boolean
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function makePhar(): bool
     {

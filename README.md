@@ -27,13 +27,18 @@ Add `pharven.json` to your project root with the following content:
         ]
     }
     
-**mount_dirs** are important if you are using Composer to autoload your project classes. `.phar` files act as their own file system, so if your classes aren't mounted, they won't be visible to the Composer autoloader.
+**mount_dirs** are very important if you are using Composer to autoload your project classes. `.phar` files act as their 
+own file system, so if your classes aren't mounted, they won't be visible to the Composer autoloader and you will run
+into problems.
     
-Run Pharven to create/update your PHAR file:
+**Run Pharven to create/update your PHAR file:**
 
     php vendor/bin/pharven
     
-A new file named `pharven.phar` will be added to the working directory. Update your bootstrap to include `./pharven.phar` instead of `vendor/autoload.php` and you're good to go.
+A file named `pharven.phar` will be added to the working directory. Update your bootstrap to include `./pharven.phar` 
+instead of `vendor/autoload.php` and you're good to go.
 
     <?php
     require __DIR__ . '/pharven.phar';
+    
+At this point you can add `vendor/` to your `.gitignore` file and commit your `pharven.phar` file instead.

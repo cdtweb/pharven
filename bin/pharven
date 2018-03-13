@@ -1,38 +1,42 @@
 #!/usr/bin/env php
 <?php
 
-// Find vendor dir
+// Find vendor directory
 $vendorDir = false;
 $vendorDirs = [
-	__DIR__ . '/vendor',
-	__DIR__ . '/../vendor',
-	__DIR__ . '/../../vendor',
-	__DIR__ . '/../../../vendor'
+    __DIR__ . '/vendor',
+    __DIR__ . '/../vendor',
+    __DIR__ . '/../../vendor',
+    __DIR__ . '/../../../vendor',
+    __DIR__ . '/../../../../vendor',
+    __DIR__ . '/../../../../../vendor'
 ];
-foreach($vendorDirs as $dir){
-	if(is_dir($dir)){
-		$vendorDir = realpath($dir);
-		break;
-	}
+foreach ($vendorDirs as $dir) {
+    if (is_dir($dir)) {
+        $vendorDir = realpath($dir);
+        break;
+    }
 }
 
-if(!$vendorDir){
+if (!$vendorDir) {
     die('Could not find vendor directory.');
 }
 
 // Find pharven.json
 $pharvenJsonPath = false;
 $pharvenJsonPaths = [
-	__DIR__ . '/pharven.json',
-	__DIR__ . '/../pharven.json',
-	__DIR__ . '/../../pharven.json',
-	__DIR__ . '/../../../pharven.json'
+    __DIR__ . '/pharven.json',
+    __DIR__ . '/../pharven.json',
+    __DIR__ . '/../../pharven.json',
+    __DIR__ . '/../../../pharven.json',
+    __DIR__ . '/../../../../pharven.json',
+    __DIR__ . '/../../../../../pharven.json'
 ];
-foreach($pharvenJsonPaths as $path){
-	if(file_exists($path)){
-		$pharvenJsonPath = realpath($path);
-		break;
-	}
+foreach ($pharvenJsonPaths as $path) {
+    if (file_exists($path)) {
+        $pharvenJsonPath = realpath($path);
+        break;
+    }
 }
 
 require_once $vendorDir . '/autoload.php';

@@ -1,7 +1,7 @@
 {
     "name": "cdtweb/pharven",
     "description": "Pharven bundles your vendor directory into a PHP Archive (PHAR)",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "license": "MIT",
     "authors": [
         {
